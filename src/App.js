@@ -5,13 +5,13 @@ import './App.scss'
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Today I Learned...</h1>
+      <div>
+        <header className="header">
+          <h1>Today I Learned...</h1>
         </header>
         <TilForm /> 
       </div>
-    );
+    )
   }
 }
 
