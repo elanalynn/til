@@ -2,9 +2,15 @@
   margin: 1em 0;
   padding: 1em;
   border: 1px solid gray;
+  background-color: white;
   box-shadow: 2px 2px 2px lightgray;
   display: flex;
   justify-content: space-between;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
 }
 
 .tag {

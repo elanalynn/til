@@ -17,7 +17,7 @@ const data = {
     {
       id: 789,
       date: new Date(8,8,8),
-      content: 'Monekys are cute',
+      content: 'Monkeys are cute',
       tags: ['monkeys', 'animals'],
       favorite: true
     }
