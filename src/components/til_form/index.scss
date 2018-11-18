@@ -1,0 +1,26 @@
+form {
+  display: flex;
+  flex-direction: column;
+
+  textarea {
+    margin: 1em auto;
+    font-size: 1.5em;
+    padding: 0.5em;
+    width: 97%;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 10em;
+    border: 0;
+    padding: 1em;
+    margin: 0;
+    font-size: 1em;
+    align-self: flex-end;
+
+    &.primary {
+      background-color: midnightblue;
+      color: white;
+    }
+  }
+}

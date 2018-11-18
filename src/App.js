@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TilForm from './components/til_form'
+import ListContainer from './containers/list_container'
 import './App.scss'
 
 class App extends Component {
@@ -7,9 +8,12 @@ class App extends Component {
     return (
       <div>
         <header className="header">
-          <h1>Today I Learned...</h1>
+          <h1>TIL</h1>
         </header>
-        <TilForm /> 
+        <main className="wrapper">
+          <TilForm />
+          <ListContainer />
+        </main>
       </div>
     )
   }

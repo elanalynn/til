@@ -5,8 +5,9 @@ class TilForm extends Component {
   render() {
     return (
       <form>
-        <label>What did you just learn?</label>
-        <input type="text"></input> 
+        <label>What have you learned today?</label>
+        <textarea/>
+        <button className="button primary">Save</button>
       </form>
     )
   }
