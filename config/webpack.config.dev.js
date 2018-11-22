@@ -1,5 +1,7 @@
 'use strict'
-require('dotenv').config()
+if (process.env.ENV !== 'production') {
+  require('dotenv').config()
+}
 
 const autoprefixer = require('autoprefixer')
 const path = require('path')
