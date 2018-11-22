@@ -3,7 +3,6 @@ import dayjs from 'dayjs'
 import './index.scss'
 
 const TilCard = props => {
-  console.log(props.date)
   return (
     <div className="card">
       <div className="card-header">{dayjs(props.date).format('dddd, MMMM DD, YYYY')}</div>
