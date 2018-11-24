@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect, Route } from 'react-router-dom'
 import api_client from '../../api_client'
 import TilForm from '../../components/til_form'
 import TilCard from '../../components/til_card'
@@ -9,31 +8,22 @@ import './index.scss'
 class ListContainer extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      items: this.getItems()
-    }
-  }
-
-  getUser(id) {
-    return api_client.get(`/users/${id}`, { withCredentials: true }).data
+    this.state = { items: this.getItems() }
   }
 
   getItems = () => {
-    api_client.get('')
+    const token = localStorage.getItem('token')
+    api_client.get(`/items`, { headers: { Authorization: token } })
       .then(res => console.log(res))
       .catch(err => console.log(err))
   }
 
   render() {
     return (
-      <Route render={ props => props.isAuthenticated
-        ? <div>
-          <TilForm />
-          {dummyData.data.map(itemProps => <TilCard {...itemProps} key={`item-${itemProps.id}`}/>)}
-        </div>
-        : <Redirect to={{ pathname: "/signin", state: { from: '' } } } />
-      } />
+      <div>
+        { this.props.user.id && <TilForm /> }
+        {dummyData.data.map(itemProps => <TilCard {...itemProps} key={`item-${itemProps.id}`}/>)}
+      </div>
     )
   }
 }
