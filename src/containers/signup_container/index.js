@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import client from '../../client'
+import client from '../../utils/client'
 import SignupForm from '../../components/signup_form'
 import './index.scss'
 
@@ -12,7 +12,6 @@ class SignupContainer extends Component {
     client.post('/signup', data)
               .then(res => {
                 localStorage.setItem('token', res.data.auth_token)
-                localStorage.setItem('id', res.data.user.id)
                 this.setUser(res.data.user)
               })
               .catch(err => this.handleError(err))
@@ -29,7 +28,6 @@ class SignupContainer extends Component {
   }
 
   setUser = user => { this.props.setUser(user) }
-
   handleError = err => console.log(err)
 
   render() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import client from '../../client'
+import jwtDecoder from '../../utils/jwtDecoder'
+import client from '../../utils/client'
 import TilForm from '../../components/til_form'
 import TilCard from '../../components/til_card'
 import './index.scss'
@@ -7,7 +8,13 @@ import './index.scss'
 class ListContainer extends Component {
   constructor(props) {
     super(props)
-    this.state = { items: [] }
+  
+    this.state = {
+      param: props.match.params.id,
+      token: localStorage.getItem('token'),
+      items: []
+    }
+
     this.getItems()
   }
 
@@ -28,10 +35,12 @@ class ListContainer extends Component {
           .catch(err => console.log(err))
   }
 
+  isAuthorized = () => +this.state.param === jwtDecoder(this.state.token).user_id
+
   render() {
     return (
       <div>
-        {this.props.user.id && <TilForm createItem={this.createItem} />}
+        {this.isAuthorized() && <TilForm createItem={this.createItem} />}
         {this.state.items.map(itemProps => <TilCard {...itemProps} key={`item-${itemProps.id}`}/>)}
       </div>
     )

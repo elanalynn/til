@@ -8,6 +8,14 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+
+    .items-right {
+      text-align: right;
+
+      p {
+        margin: 0.25em 0;
+      }
+    }
   }
 
   h1 {

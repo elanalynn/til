@@ -1,7 +1,8 @@
 import axios from 'axios'
+import jwtDecoder from './jwtDecoder'
 
 const token = localStorage.getItem('token')
-const id = localStorage.getItem('id')
+const id = jwtDecoder(token).user_id
 
 const client = axios.create({
   baseURL: id ? `http://localhost:3000/users/${id}` : 'http://localhost:3000/',

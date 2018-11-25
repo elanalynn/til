@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import client from './client'
+import client from './utils/client'
 import Header from './components/header'
 import ListContainer from './containers/list_container'
 import SignupContainer from './containers/signup_container'
@@ -15,25 +15,25 @@ class App extends Component {
     this.setUser()
   }
 
-  setUser = () => {
-    const id = localStorage.getItem('id')
-    return id ? client.get('')
-                      .then(res => this.setState({user: res.data}))
-                      .catch(err => console.log(err))
-              : {}
-  }
+  setUser = () => localStorage.getItem('token')
+                  ? client.get('')
+                          .then(res => this.setState({user: res.data}))
+                          .catch(err => console.log(err))
+                  : {}
+
+  logout = () => localStorage.clear()
 
   render() {
     const user = this.state.user
     return (
       <Router>
         <div>
-          <Header user={user}/>
+          <Header user={user} logout={this.logout}/>
           <main className="wrapper">
             <Switch>
               <Route exact path="/signup" render={ () => <SignupContainer user={user} setUser={this.setUser} /> } />
               <Route exact path="/signin" render={ () => <SigninContainer user={user}/> } />
-              <Route path="/" render={ () => <ListContainer user={user} /> } />
+              <Route path="/:id" component={ListContainer} />
               <Route component={ NoMatchContainer } />
             </Switch>
           </main>
