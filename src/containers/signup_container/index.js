@@ -12,6 +12,7 @@ class SignupContainer extends Component {
     api_client.post('/signup', data)
               .then(res => {
                 localStorage.setItem('token', res.data.auth_token)
+                localStorage.setItem('id', res.data.user.id)
                 this.setUser(res.data.user)
               })
               .catch(err => this.handleError(err))
