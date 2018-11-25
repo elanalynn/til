@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import api_client from '../../api_client'
+import client from '../../client'
 import SignupForm from '../../components/signup_form'
 import './index.scss'
 
@@ -9,7 +9,7 @@ class SignupContainer extends Component {
     event.preventDefault()
     const [first, last, email, password, password_conf] = Array.from(event.nativeEvent.target)
     const data = this.formatData(first, last, email, password, password_conf)
-    api_client.post('/signup', data)
+    client.post('/signup', data)
               .then(res => {
                 localStorage.setItem('token', res.data.auth_token)
                 localStorage.setItem('id', res.data.user.id)
