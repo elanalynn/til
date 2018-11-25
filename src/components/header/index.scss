@@ -1,0 +1,17 @@
+.header {
+  background-color: white;
+  color: #222;
+  padding: 1em;
+  border-bottom: 2px solid steelblue;
+
+  .wrapper {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  h1 {
+    font-family: 'Pacifico', cursive;
+    margin: 0;
+  }
+}
