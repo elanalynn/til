@@ -26,15 +26,28 @@ class ListContainer extends Component {
           .catch(err => console.log(err))
   }
 
-  createItem = event => {
+  handleSubmit = event => {
     event.preventDefault()
-    const data = { content: event.nativeEvent.target[0].value, date: Date.now() }
+    const content = event.nativeEvent.target[0].value
+    const tags = event.nativeEvent.target[1].value 
+    this.createItem({ content, date: Date.now() }, tags)
+  }
+
+  createItem = (data, tags) => {
     client.post(`users/${this.currentUserId()}/items`, data)
-          .then(() => {
+          .then(res => {
             document.getElementById('til-form').reset()
-            this.getItems()
+            this.createTags(tags, res.data.id)
           })
           .catch(err => console.log(err))
+  }
+
+  createTags = (tags, itemId) => {
+    tags.split(',').forEach(label => {
+      client.post(`users/${this.currentUserId()}/items/${itemId}/tags`, {label: label.replace(/\s/g, '')})
+            .then(() => this.getItems())
+            .catch(err => console.log(err))
+    })
   }
 
   isAuthorized = () => +this.state.userPageId === this.currentUserId()
@@ -42,8 +55,10 @@ class ListContainer extends Component {
   render() {
     return (
       <div>
-        {this.isAuthorized() && <TilForm createItem={this.createItem} />}
-        {this.state.items.map(itemProps => <TilCard {...itemProps} key={`item-${itemProps.id}`}/>)}
+        {this.isAuthorized() && <TilForm handleSubmit={this.handleSubmit} />}
+        <div className="wrapper">
+          {this.state.items.map(itemProps => <TilCard {...itemProps} key={`item-${itemProps.id}`}/>)}
+        </div>
       </div>
     )
   }

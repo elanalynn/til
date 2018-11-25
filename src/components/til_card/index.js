@@ -8,7 +8,9 @@ const TilCard = props => {
       <div className="card-header">{dayjs(props.date).format('dddd, MMMM DD, YYYY')}</div>
       <div className="card-body">
         <p>{props.content}</p>
-        <div className="tags">{props.tags.map(tag => <span className="tag" key={tag}>#{tag}</span>)}</div>
+        <div className="tags">
+          {props.tags.map(tag => <span className="tag" key={`tag-${tag.id}`}>#{tag.label}</span>)}
+        </div>
       </div>
     </div>
   )

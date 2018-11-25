@@ -13,22 +13,21 @@
 
 .card-body {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 
   p {
     font-size: 1.25em;
   }
-}
 
-.tags {
-  display: flex;
-  align-items: center;
+  > div {
+    align-self: flex-end;
+  }
 }
 
 .tag {
-  background-color: darkslateblue;
+  background-color: steelblue;
+  font-family: 'Courier New', Courier, monospace;
   color: white;
-  border-radius: 10px;
-  padding: 0.5em;
+  padding: 0.25em 0.5em;
   margin: auto 0 auto 0.5em;
 }
