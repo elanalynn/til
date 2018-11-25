@@ -10,7 +10,7 @@ class ListContainer extends Component {
     super(props)
   
     this.state = {
-      param: props.match.params.id,
+      userPageId: props.match.params.id,
       token: localStorage.getItem('token'),
       items: []
     }
@@ -18,8 +18,10 @@ class ListContainer extends Component {
     this.getItems()
   }
 
+  currentUserId = () => jwtDecoder(this.state.token).user_id
+
   getItems = () => {
-    client.get(`/items`)
+    client.get(`/users/${this.state.userPageId}/items`)
           .then(res => this.setState({ items: res.data }))
           .catch(err => console.log(err))
   }
@@ -27,7 +29,7 @@ class ListContainer extends Component {
   createItem = event => {
     event.preventDefault()
     const data = { content: event.nativeEvent.target[0].value, date: Date.now() }
-    client.post(`/items`, data)
+    client.post(`users/${this.currentUserId()}/items`, data)
           .then(() => {
             document.getElementById('til-form').reset()
             this.getItems()
@@ -35,7 +37,7 @@ class ListContainer extends Component {
           .catch(err => console.log(err))
   }
 
-  isAuthorized = () => +this.state.param === jwtDecoder(this.state.token).user_id
+  isAuthorized = () => +this.state.userPageId === this.currentUserId()
 
   render() {
     return (

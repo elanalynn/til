@@ -15,8 +15,8 @@ class App extends Component {
     this.setUser()
   }
 
-  setUser = () => localStorage.getItem('token')
-                  ? client.get('')
+  setUser = () => this.state.user.id
+                  ? client.get(`/users/${this.state.user.id}`)
                           .then(res => this.setState({user: res.data}))
                           .catch(err => console.log(err))
                   : {}
