@@ -12,17 +12,26 @@ class ListContainer extends Component {
   }
 
   getItems = () => {
-    const token = localStorage.getItem('token')
-    const id = localStorage.getItem('id')
-    client.get(`users/${id}/items`, { headers: { Authorization: token } })
+    client.get(`/items`)
           .then(res => this.setState({ items: res.data }))
+          .catch(err => console.log(err))
+  }
+
+  createItem = event => {
+    event.preventDefault()
+    const data = { content: event.nativeEvent.target[0].value, date: Date.now() }
+    client.post(`/items`, data)
+          .then(() => {
+            document.getElementById('til-form').reset()
+            this.getItems()
+          })
           .catch(err => console.log(err))
   }
 
   render() {
     return (
       <div>
-        {this.props.user.id && <TilForm />}
+        {this.props.user.id && <TilForm createItem={this.createItem} />}
         {this.state.items.map(itemProps => <TilCard {...itemProps} key={`item-${itemProps.id}`}/>)}
       </div>
     )

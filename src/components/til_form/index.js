@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './index.scss'
 
-class TilForm extends Component {
-  render() {
-    return (
-      <form>
-        <label>Today I Learned...</label>
-        <textarea/>
-        <button className="button primary">Save</button>
-      </form>
-    )
-  }
+const TilForm = props => {
+  return (
+    <form id="til-form" onSubmit={props.createItem}>
+      <label htmlFor="content">Today I Learned...</label>
+      <textarea name="content"/>
+      <input type="submit" className="button primary" value="Save" />
+    </form>
+  )
 }
 
 export default TilForm

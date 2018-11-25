@@ -10,19 +10,17 @@ import './App.scss'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { user: this.getUser() }
+    this.state = { user: {} }
+    this.setUser()
   }
 
-  getUser = () => {
+  setUser = () => {
     const token = localStorage.getItem('token')
-    const id = localStorage.getItem('id') 
-    return token ? client.get(`/users/${id}`, { headers: { Authorization: token } })
+    return token ? client.get('')
                          .then(res => this.setState({user: res.data}))
                          .catch(err => console.log(err))
                  : {}
   }
-
-  setUser = user => this.setState({user: user})
 
   render() {
     return (
