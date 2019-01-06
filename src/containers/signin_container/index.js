@@ -10,7 +10,7 @@ class SigninContainer extends Component {
     event.preventDefault()
     const [email, password] = Array.from(event.nativeEvent.target)
     const data = this.formatData(email, password)
-    client.post('/auth/login', data)
+    client.post('auth/login', data)
               .then(res => {
                 this.props.setToken(res.data.auth_token)
                 this.props.history.push(`/`)

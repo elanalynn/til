@@ -10,7 +10,7 @@ class SignupContainer extends Component {
     event.preventDefault()
     const [first, last, email, password, password_conf] = Array.from(event.nativeEvent.target)
     const data = this.formatData(first, last, email, password, password_conf)
-    client.post('/signup', data)
+    client.post('signup', data)
               .then(res => this.props.setToken(res.data.auth_token))
               .catch(err => handleError(err))
   }
