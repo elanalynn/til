@@ -20,8 +20,10 @@ class TilForm extends Component {
             <label htmlFor="content">Today I Learned...</label>
             <textarea name="content"/>
             <label htmlFor="tags">Tags (comma separated values)</label>
-            <input name="tags"/>
-            <input type="submit" className="button primary" value="Save" />
+            <div className="flex-row">
+              <input name="tags" className="tags-input"/>
+              <input type="submit" className="button primary" value="Save" />
+            </div>
           </form>
           <div className="wrapper">
             <div className="arrow up-arrow pointer" onClick={ () => this.setState({expanded: false}) }>

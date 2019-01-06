@@ -28,7 +28,7 @@ class SignupContainer extends Component {
   render() {
     return (
       <div>
-      { this.props.user.id
+      { this.props.user
       ? <Redirect to={'/'} />
       : <div>
         <h2>Sign up to save your own "til" notes...</h2>

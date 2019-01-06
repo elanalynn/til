@@ -11,6 +11,12 @@ h2, h3 {
   text-align: center;
 }
 
+a {
+  color: #4682B3;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -30,16 +36,33 @@ form {
 
   .button {
     width: 100%;
-    max-width: 10em;
+    max-width: 6em;
     border: 0;
-    padding: 1em;
-    margin: 1em auto;
-    font-size: 1em;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    font-size: 1.25em;
     align-self: center;
+    font-family: 'Patrick Hand', sans-serif;
 
     &.primary {
-      background-color: steelblue;
+      background-color: #0a4877;
       color: white;
+      box-shadow: 2px 2px 8px rgba(50, 50, 50, 0.5);
     }
   }
+}
+
+.wrapper {
+  position: relative;
+  margin: 2em auto;
+  max-width: 50em;
+  width: 90%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
 }

@@ -54,7 +54,7 @@ class ListContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="list-wrapper">
         {this.isAuthorized() && <TilForm handleSubmit={this.handleSubmit} />}
         <div className="wrapper">
           {this.state.items.map(itemProps => <TilCard {...itemProps} key={`item-${itemProps.id}`}/>)}

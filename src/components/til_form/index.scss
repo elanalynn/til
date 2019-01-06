@@ -1,8 +1,42 @@
 .til-form-wrapper {
   position: relative;
   padding: 1em;
-  background: #222;
+  background: #4682b3;
   color: white;
+
+  // Override wrapper margins
+  .wrapper {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .flex-row {
+    display: flex;
+    margin: 0.25em 0 1em;
+    align-items: center;
+
+    @media screen and (max-width: 640px) {
+      flex-direction: column;
+    }
+
+    .tags-input {
+      flex: 1;
+      height: 1.5em;
+
+      @media screen and (max-width: 640px) {
+        width: 94%;
+      }
+    }
+
+    .button {
+      flex: 1;
+      margin: -0.5em 0 0 1em;
+
+      @media screen and (max-width: 640px) {
+        margin: 0.5em 0;
+      }
+    }
+  }
 }
 
 .arrow {
@@ -16,5 +50,5 @@
 }
 
 .down-arrow {
-  bottom: -6.5rem;
+  bottom: -4rem;
 }
