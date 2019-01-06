@@ -2,7 +2,6 @@ import React from 'react'
 import './index.scss'
 
 const LearnerCard = props => {
-  console.log(props.learner)
   return (
     <div className="learner-card">
       <div className="card-body">
