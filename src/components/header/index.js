@@ -6,7 +6,7 @@ const Header = props => {
   return (
     <header className="header">
       <div className="wrapper">
-        <h1>til</h1>
+        <Link to="/"><h1>til</h1></Link>
         { props.user ? <div className="items-right">
           <p>Hi {props.user.first_name}!</p>
           <a href="/" onClick={props.logout}>Logout</a>

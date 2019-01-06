@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import jwtDecoder from '../../utils/jwtDecoder'
 import client from '../../utils/client'
+import { handleError } from '../../utils/error_handler'
 import TilForm from '../../components/til_form'
 import TilCard from '../../components/til_card'
 import './index.scss'
@@ -12,18 +13,29 @@ class ListContainer extends Component {
     this.state = {
       userPageId: props.match.params.id,
       token: localStorage.getItem('token'),
+      learner: null,
       items: []
     }
 
-    this.getItems()
+    this.getLearner()
   }
 
   currentUserId = () => jwtDecoder(this.state.token).user_id
 
+  getLearner() {
+    const learnerId = this.props.match.params.id
+    client.get(`/users/${learnerId}`)
+      .then(res => {
+        this.setState({learner: res.data})
+        this.getItems()
+      })
+      .catch(err => handleError(err))
+  }
+
   getItems = () => {
-    client.get(`/users/${this.state.userPageId}/items`)
+    client.get(`/users/${this.state.learner.id}/items`)
           .then(res => this.setState({ items: res.data }))
-          .catch(err => console.log(err))
+          .catch(err => handleError(err))
   }
 
   handleSubmit = event => {
@@ -56,6 +68,7 @@ class ListContainer extends Component {
     return (
       <div className="list-wrapper">
         {this.isAuthorized() && <TilForm handleSubmit={this.handleSubmit} />}
+        <h2>Stuff {this.state.learner && this.state.learner.first_name} has learned...</h2>
         <div className="wrapper">
           {this.state.items.map(itemProps => <TilCard {...itemProps} key={`item-${itemProps.id}`}/>)}
         </div>
