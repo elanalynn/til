@@ -51,14 +51,15 @@ class ListContainer extends Component {
             document.getElementById('til-form').reset()
             this.createTags(tags, res.data.id)
           })
-          .catch(err => console.log(err))
+          .catch(err => handleError(err))
   }
 
   createTags = (tags, itemId) => {
-    tags.split(',').forEach(label => {
-      client.post(`users/${this.currentUserId()}/items/${itemId}/tags`, {label: label.replace(/\s/g, '')})
+    const tagArray = tags.includes(',') ? tags.split(',').map(tag => tag.trim()) : [tags]
+    tagArray.forEach(tag => {
+      client.post(`users/${this.currentUserId()}/items/${itemId}/tags`, {label: tag.replace(/\s/g, '_')})
             .then(() => this.getItems())
-            .catch(err => console.log(err))
+            .catch(err => handleError(err))
     })
   }
 

@@ -21,7 +21,7 @@ class App extends Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     const token = this.state.token || localStorage.getItem('token')
     token ? this.fetchUser(this.state.token) : this.setState({user: null})
   }
@@ -41,7 +41,7 @@ class App extends Component {
     localStorage.clear()
   }
 
-  render = () => {
+  render() {
     const user = this.state.user
     return (
       <Router>
