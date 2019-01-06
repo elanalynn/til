@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import client from './utils/client'
 import jwtDecoder from './utils/jwtDecoder'
+import { handleError } from './utils/error_handler'
 import Header from './components/header'
 import ListContainer from './containers/list_container'
 import SignupContainer from './containers/signup_container'
@@ -16,31 +17,41 @@ class App extends Component {
 
     this.state = {
       token: localStorage.getItem('token'),
-      user: {}
+      user: null
     }
-
-    this.setUser()
   }
 
-  setUser = () => this.state.token
-                  ? client.get(`/users/${jwtDecoder(this.state.token).user_id}`)
-                          .then(res => this.setState({user: res.data}))
-                          .catch(err => console.log(err))
-                  : {}
+  componentDidMount = () => {
+    const token = this.state.token || localStorage.getItem('token')
+    token ? this.fetchUser(this.state.token) : this.setState({user: null})
+  }
 
-  logout = () => localStorage.clear()
+  fetchUser = token => {
+    client.get(`/users/${jwtDecoder(token).user_id}`)
+          .then(res => this.setUser(res.data))
+          .catch(err => handleError(err))
+  }
 
-  render() {
+  setUser = user => this.setState({user: user})
+
+  setToken = token => localStorage.setItem('token', token)
+
+  logout = () => {
+    this.setState({user: null})
+    localStorage.clear()
+  }
+
+  render = () => {
     const user = this.state.user
     return (
       <Router>
         <div>
           <Header user={user} logout={this.logout}/>
           <Switch>
-            <Route exact path="/signup" render={ () => <SignupContainer user={user} setUser={this.setUser} /> } />
-            <Route exact path="/signin" render={ () => <SigninContainer user={user}/> } />
-            <Route path="/:id" component={ListContainer} />
-            <Route path="/" component={IndexContainer} />
+            <Route exact path="/signup" render={ () => <SignupContainer user={user} setToken={this.setToken} /> } />
+            <Route exact path="/signin" render={ () => <SigninContainer user={user} setToken={this.setToken}/> } />
+            <Route path="/:id" component={ListContainer} user={user} />
+            <Route exact path="/" render={ () => <IndexContainer user={user} /> } />
             <Route component={ NoMatchContainer } />
           </Switch>
         </div>

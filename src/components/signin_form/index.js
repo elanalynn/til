@@ -1,18 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './index.scss'
 
-class SigninForm extends Component {
-  render() {
-    return (
-      <form className="signin-form">
-        <label htmlFor="email">Email</label>
-        <input name="email"/>
-        <label htmlFor="password">Password</label>
-        <input name="password"/>
-        <button className="button primary">Save</button>
-      </form>
-    )
-  }
+const SigninForm = ({onSignin}) => {
+  return (
+    <form className="signin-form" onSubmit={ onSignin }>
+      <label htmlFor="email">Email</label>
+      <input type="email" name="email"/>
+      <label htmlFor="password">Password</label>
+      <input type="password" name="password"/>
+      <button className="button primary">Save</button>
+    </form>
+  )
 }
 
 export default SigninForm

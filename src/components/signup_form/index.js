@@ -1,9 +1,9 @@
 import React from 'react'
 import './index.scss'
 
-const SignupForm = props => {
+const SignupForm = ({onSignup}) => {
   return (
-    <form className="signup-form" onSubmit={ props.signup } >
+    <form className="signup-form" onSubmit={ onSignup } >
       <label htmlFor="first_name">First Name</label>
       <input name="first_name" type="text" />
       <label htmlFor="last_name">Last Name</label>
