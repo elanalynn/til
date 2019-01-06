@@ -1,0 +1,24 @@
+.learner-card {
+  margin-right: 0.5em;
+  padding: 1em;
+  background-color: white;
+  color: #222;
+  box-shadow: 2px 2px 16px lightgray;
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+  
+    p {
+      font-size: 1.25em;
+    }
+  
+    > div {
+      align-self: flex-end;
+    }
+  }
+
+  .tag {
+    margin-bottom: 1em;
+  }
+}

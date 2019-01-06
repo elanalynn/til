@@ -1,4 +1,17 @@
 .index-container {
   display: flex;
   justify-content: space-between;
+
+  > section {
+    margin-right: 5em;
+  }
+
+  h2 {
+    text-align: left;
+  }
+
+  .other-learners {
+    display: flex;
+    justify-content: space-between;
+  }
 }
