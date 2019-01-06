@@ -1,5 +1,21 @@
 .til-form-wrapper {
+  position: relative;
   padding: 1em;
   background: #222;
   color: white;
+}
+
+.arrow {
+  position: absolute;
+  right: 4rem;
+  padding: 0;
+}
+
+.up-arrow {
+  bottom: -0.5rem;
+}
+
+.down-arrow {
+  bottom: -2.75rem;
+  right: 4rem;
 }
