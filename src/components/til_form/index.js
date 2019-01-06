@@ -23,9 +23,13 @@ class TilForm extends Component {
             <input name="tags"/>
             <input type="submit" className="button primary" value="Save" />
           </form>
-          <div className="arrow up-arrow pointer" onClick={ () => this.setState({expanded: false}) }><UpArrow /></div>
+          <div className="wrapper">
+            <div className="arrow up-arrow pointer" onClick={ () => this.setState({expanded: false}) }>
+              <UpArrow />
+            </div>
+          </div>
         </div>
-        : <div onClick={ () => this.setState({expanded: true}) }>
+        : <div className="wrapper" onClick={ () => this.setState({expanded: true}) }>
           <div className="text-center pointer">Click to add more Items...</div>
           <div className="arrow down-arrow pointer"><DownArrow /></div>
         </div> }
