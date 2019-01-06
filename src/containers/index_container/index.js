@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Cat } from 'react-kawaii'
-import LearnerCard from './learner_card'
+import LearnerCard from '../../components/learner_card'
 import './index.scss'
 
 class IndexContainer extends Component {
@@ -20,7 +20,7 @@ class IndexContainer extends Component {
     return (
       <div className="wrapper index-container">
         <section>
-          <h1>Today I Lerned...</h1>
+          <h1>Today I Learned...</h1>
           <h4>Take note of things you learn.</h4>
           { this.props.user && <div>
             <hr />
