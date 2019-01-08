@@ -4,6 +4,7 @@ import client from './utils/client'
 import jwtDecoder from './utils/jwtDecoder'
 import { handleError } from './utils/error_handler'
 import Header from './components/header'
+import Footer from './components/footer'
 import ListContainer from './containers/list_container'
 import SignupContainer from './containers/signup_container'
 import SigninContainer from './containers/signin_container'
@@ -54,6 +55,7 @@ class App extends Component {
             <Route exact path="/" render={ () => <IndexContainer user={user} /> } />
             <Route component={ NoMatchContainer } />
           </Switch>
+          <Footer />
         </div>
       </Router>
     )
