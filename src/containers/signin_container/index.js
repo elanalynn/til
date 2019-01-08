@@ -13,7 +13,7 @@ class SigninContainer extends Component {
     client.post('/auth/login', data)
               .then(res => {
                 this.props.setToken(res.data.auth_token)
-                window.href(`/`)
+                window.location.href = `/`
               })
               .catch(err => handleError(err))
   }
