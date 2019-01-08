@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import dayjs from 'dayjs'
 import jwtDecoder from '../../utils/jwtDecoder'
 import client from '../../utils/client'
 import { handleError } from '../../utils/error_handler'
@@ -13,7 +14,7 @@ class ListContainer extends Component {
     this.state = {
       userPageId: props.match.params.id,
       token: localStorage.getItem('token'),
-      learner: null,
+      learner: {},
       items: []
     }
 
@@ -41,8 +42,8 @@ class ListContainer extends Component {
   handleSubmit = event => {
     event.preventDefault()
     const content = event.nativeEvent.target[0].value
-    const tags = event.nativeEvent.target[1].value 
-    this.createItem({ content, date: Date.now() }, tags)
+    const tags = event.nativeEvent.target[1].value
+    this.createItem({ content, date: dayjs(Date.now()).toDate() }, tags)
   }
 
   createItem = (data, tags) => {
@@ -58,9 +59,10 @@ class ListContainer extends Component {
     const tagArray = tags.includes(',') ? tags.split(',').map(tag => tag.trim()) : [tags]
     tagArray.forEach(tag => {
       client.post(`users/${this.currentUserId()}/items/${itemId}/tags`, {label: tag.replace(/\s/g, '_')})
-            .then(() => this.getItems())
+            .then(() => {})
             .catch(err => handleError(err))
     })
+    window.location.reload()
   }
 
   isAuthorized = () => +this.state.userPageId === this.currentUserId()
