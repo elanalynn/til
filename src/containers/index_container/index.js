@@ -20,13 +20,14 @@ class IndexContainer extends Component {
     return (
       <div className="wrapper index-container">
         <section>
-          <h1>Today I Learned...</h1>
-          <h4>Take note of things you learn.</h4>
-          { this.props.user && <div>
-            <hr />
+          { this.props.user ? <div>
             <Link to={`/${this.props.user.id}/items`} className="button primary">
               <h2>Go to your Dashboard...</h2>
             </Link>
+          </div>
+          : <div>
+            <h1>Today I Learned...</h1>
+            <h4>Take note of things you learn.</h4>
           </div> }
           <hr />
           <h2>See what others are learning!</h2>

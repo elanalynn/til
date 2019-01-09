@@ -11,12 +11,12 @@ class Footer extends Component {
   }
   render() {
     return (
-      <header className="footer">
+      <section className="footer">
         <div className="wrapper">
           &copy; Elana Kopelevich 2018
           <div className="items-right">Images via <a href="https://react-kawaii.now.sh/">React Kawaii</a></div>
         </div>
-      </header>
+      </section>
     )
   }
 }

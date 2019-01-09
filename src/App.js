@@ -47,14 +47,16 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Header user={user} logout={this.logout}/>
-          <Switch>
-            <Route exact path="/signup" render={ () => <SignupContainer user={user} setToken={this.setToken} /> } />
-            <Route exact path="/signin" render={ () => <SigninContainer user={user} setToken={this.setToken}/> } />
-            <Route path="/:id" component={ListContainer} user={user} />
-            <Route exact path="/" render={ () => <IndexContainer user={user} /> } />
-            <Route component={ NoMatchContainer } />
-          </Switch>
+          <div className="wrapper-for-sticky-footer">
+            <Header user={user} logout={this.logout}/>
+            <Switch>
+              <Route exact path="/signup" render={ () => <SignupContainer user={user} setToken={this.setToken} /> } />
+              <Route exact path="/signin" render={ () => <SigninContainer user={user} setToken={this.setToken}/> } />
+              <Route path="/:id" component={ListContainer} user={user} />
+              <Route exact path="/" render={ () => <IndexContainer user={user} /> } />
+              <Route component={ NoMatchContainer } />
+            </Switch>
+            </div>
           <Footer />
         </div>
       </Router>
