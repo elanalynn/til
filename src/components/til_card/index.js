@@ -12,7 +12,10 @@ const TilCard = props => {
           {props.tags.map(tag => <span className="tag" key={`tag-${tag.id}`}>#{tag.label}</span>)}
         </div>
       </div>
-      <div className="card-footer">Edit</div>
+      <div className="card-footer">
+        <i className="fas fa-pencil-alt"></i>
+        <i className="far fa-trash-alt"></i>
+      </div>
     </div>
   )
 }
