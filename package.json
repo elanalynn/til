@@ -53,7 +53,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "jest --env=jsdom"
+    "test": "jest --env=jsdom",
+    "heroku-postbuild": "echo Skip build on Heroku"
   },
   "devDependencies": {},
   "jest": {
@@ -97,5 +98,6 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  "heroku-run-build-script": true
 }
